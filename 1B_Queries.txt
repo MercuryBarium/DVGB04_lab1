@@ -1,0 +1,10 @@
+x = π CourseName, CourseNumber(σ CreditHours > 3 (COURSE)) /*Fråga 1*/
+y = π CourseNumber (σ Semester = 'Fall' ∧ Year = 98 (SECTION)) /*Fråga 2*/
+
+S = ((COURSE)⨝COURSE.CourseName = 'Data Structures' ∧ COURSE.CourseNumber = SECTION.CourseNumber (SECTION))⨝SECTION.SectionIdentifier = GRADE_REPORT.SectionIdentifier ((STUDENT)⨝STUDENT.StudentNumber = GRADE_REPORT.StudentNumber (GRADE_REPORT))
+SG = π Name, Grade (S) /*Fråga 3*/
+
+A = ((GRADE_REPORT)⨝GRADE_REPORT.SectionIdentifier = SECTION.SectionIdentifier (SECTION))⨝GRADE_REPORT.StudentNumber = STUDENT.StudentNumber ∧ ((SECTION.Year = 98 ∧ SECTION.Semester = 'Fall') ∨ (SECTION.Year = 99 ∧ SECTION.Semester = 'Spring')) (STUDENT)
+B = π Name, CourseNumber (A)
+B /*Fråga 4*/
+

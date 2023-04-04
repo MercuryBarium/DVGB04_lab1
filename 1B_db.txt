@@ -1,0 +1,45 @@
+group: UIBK - R, S, T
+description: Tables from and for the lecture [Databases: Foundations, Data Models and System Concepts - University of Innsbruck](http://dbis-informatik.uibk.ac.at/249-0-VO-Datenbanksysteme.html) chapter 3 
+category@de:Universität Innsbruck
+category@en:University of Innsbruck
+
+STUDENT = {
+	Name, StudentNumber, Class, Major
+	'Smith', 17, 1, 'CS'
+	'Brown', 8, 2, 'CS'
+}
+
+COURSE = {
+	CourseName, CourseNumber, CreditHours, Department
+	'Intro to Computer Science', 'CS1310', 4, 'CS'
+	'Data Structures', 'CS3320', 4, 'CS'
+	'Discrete Mathematics', 'MATH2410', 3, 'MATH'
+	'Database', 'CS3380', 3, 'CS'
+}
+
+SECTION = {
+	SectionIdentifier, CourseNumber, Semester, Year, Instructor
+	85, 'MATH2410', 'Fall', 98, 'King'
+	92, 'CS1310', 'Fall', 98, 'Andersson'
+	102, 'CS3320', 'Spring', 99, 'Knuth'
+	112, 'MATH2410', 'Fall', 99, 'Chang'
+	119, 'CS1310', 'Fall', 99, 'Andersson'
+	135, 'CS3380', 'Fall', 99, 'Stone'
+}
+
+GRADE_REPORT = {
+	StudentNumber, SectionIdentifier, Grade
+	17, 112, 'B'
+	17, 119, 'C'
+	8, 85, 'A'
+	8, 92, 'A'
+	8, 102, 'B'
+	8, 135, 'A'
+}
+
+PREQUISITE = {
+	CourseNumber, PrequisiteNumber
+	'CS3380', 'CS3320'
+	'CS3380', 'MATH2410'
+	'CS3320', 'CS1310'
+}
