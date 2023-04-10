@@ -1,0 +1,20 @@
+//Fråga 3
+SELECT DISTINCT COLOR, CITY FROM `Parts`;  
+
+-- Query 2
+SELECT * FROM Shipments WHERE QTY >= 250 AND QTY <= 350; 
+
+-- Query 3
+SELECT sname FROM Suppliers JOIN Parts JOIN Shipments WHERE 
+Suppliers.snr = Shipments.SNR 
+AND Parts.PNR = Shipments.PNR 
+AND Shipments.QTY > 300 
+AND (Parts.COLOR = 'Blue' OR Parts.COLOR = 'Red');  
+
+-- Query 4 
+INSERT INTO Suppliers (snr, sname, status, city) VALUES ('S10', 'Smith', 0, 'New York');
+
+-- Query 5
+SELECT Parts.PNR, Parts.PNAME FROM Parts JOIN Shipments WHERE city = 'London' AND Parts.PNR = Shipments.PNR AND Shipments.SNR = 'S1';
+
+-- Query 6
