@@ -18,3 +18,66 @@ INSERT INTO Suppliers (snr, sname, status, city) VALUES ('S10', 'Smith', 0, 'New
 SELECT Parts.PNR, Parts.PNAME FROM Parts JOIN Shipments WHERE city = 'London' AND Parts.PNR = Shipments.PNR AND Shipments.SNR = 'S1';
 
 -- Query 6
+SELECT DISTINCT Suppliers.snr, Suppliers.sname FROM Suppliers JOIN Shipments JOIN Parts WHERE 
+Suppliers.snr = Shipments.SNR AND 
+Shipments.PNR = Parts.PNR AND 
+Suppliers.city = Parts.CITY;
+
+-- Query 7
+SELECT Suppliers.sname, Shipments.PNR, Suppliers.city FROM Suppliers JOIN Shipments WHERE Suppliers.snr = Shipments.SNR AND Suppliers.city LIKE '_o%';
+
+-- Query 8
+SELECT DISTINCT COUNT(DISTINCT Suppliers.snr) FROM Suppliers JOIN Shipments JOIN Parts WHERE 
+Suppliers.snr = Shipments.SNR AND 
+Parts.PNR = Shipments.PNR AND 
+Parts.COLOR = 'Blue';
+
+-- Query 9
+SELECT Parts.PNR, Parts.PNAME FROM Parts WHERE Parts.COLOR = 'Blue';
+
+-- Query 10
+SELECT Suppliers.snr, Suppliers.sname FROM Suppliers JOIN Shipments JOIN Parts WHERE 
+Suppliers.snr = Shipments.SNR AND
+Parts.PNR = Shipments.PNR AND
+Parts.CITY = Suppliers.city AND
+Parts.COLOR = 'Blue';
+
+-- Query 11
+SELECT Parts.PNR, Parts.PNAME FROM Parts JOIN Suppliers JOIN Shipments WHERE
+Suppliers.snr = Shipments.SNR AND
+Parts.PNR = Shipments.PNR AND
+Suppliers.sname = 'Smith' AND
+Suppliers.city = Parts.CITY;
+
+-- Query 12
+SELECT COUNT(DISTINCT Suppliers.snr) FROM Suppliers JOIN Shipments JOIN Parts WHERE
+Suppliers.snr = Shipments.SNR AND
+Parts.PNR = Shipments.PNR AND
+Suppliers.city = 'London' AND 
+Parts.PNAME = 'Cam';
+
+-- Query 13
+SELECT DISTINCT Parts.CITY FROM Parts JOIN Suppliers JOIN Shipments WHERE
+Parts.PNR = Shipments.PNR AND
+Suppliers.snr = Shipments.SNR AND 
+Suppliers.city = 'London' AND
+Parts.PNAME = 'Bolt';
+
+-- Query 14
+SELECT SUM(Shipments.QTY) AS `Total Quantity` FROM Shipments JOIN Suppliers WHERE
+Suppliers.snr = Shipments.SNR AND
+Suppliers.sname = 'Jones';
+
+-- Query 15
+SELECT DISTINCT Parts.COLOR FROM Parts JOIN Shipments JOIN Suppliers WHERE
+Suppliers.snr = Shipments.SNR AND
+Parts.PNR = Shipments.PNR AND
+Suppliers.sname = 'Smith';
+
+-- Query 16
+SELECT Suppliers.snr, Suppliers.sname, SUM(Shipments.QTY) as `Quantity` FROM Shipments JOIN Suppliers JOIN Parts WHERE
+Parts.PNR = Shipments.PNR AND
+Suppliers.snr = Shipments.SNR AND 
+Parts.COLOR = 'Blue' GROUP BY Suppliers.snr;
+
+-- Query 17
