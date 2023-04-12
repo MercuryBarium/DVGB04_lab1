@@ -81,3 +81,30 @@ Suppliers.snr = Shipments.SNR AND
 Parts.COLOR = 'Blue' GROUP BY Suppliers.snr;
 
 -- Query 17
+SELECT Suppliers.sname, SUM(Shipments.QTY) AS `Quantity` FROM Shipments JOIN Suppliers JOIN Parts WHERE
+Parts.PNR = Shipments.PNR AND
+Suppliers.snr = Shipments.SNR AND
+Suppliers.city = 'London' AND 
+Parts.CITY != 'London' 
+GROUP BY Suppliers.snr HAVING `Quantity` >= 200;
+
+-- Query 18
+SELECT Parts.PNR, Parts.PNAME, Parts.CITY, SUM(Shipments.QTY) FROM Parts JOIN Shipments JOIN Suppliers WHERE
+Parts.PNR = Shipments.PNR AND
+Suppliers.snr = Shipments.SNR AND
+Suppliers.city = Parts.CITY
+GROUP BY Parts.PNR 
+ORDER BY Parts.CITY;
+
+-- Query 19
+SELECT Parts.PNR, Parts.PNAME, SUM(Shipments.QTY) AS `Quantity` FROM Parts JOIN Shipments WHERE
+Parts.PNR = Shipments.PNR
+GROUP BY Parts.PNR
+HAVING `Quantity` > 500;
+
+-- Query 20
+SELECT s1.snr AS `s.snum`, s2.snr AS `second.snum` FROM Suppliers AS s1 INNER JOIN Suppliers AS s2 ON s1.snr > s2.snr WHERE
+s1.city != s2.city;
+
+-- Query 21
+SELECT Parts.PNAME, FLOOR(AVG(Parts.WEIGHT)) AS Expr1001 FROM Parts GROUP BY Parts.PNAME;
